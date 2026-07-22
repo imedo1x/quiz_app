@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_screen.dart';
 import 'start_screen.dart';
+import 'results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -23,7 +24,7 @@ List<String> selectedAnswers = [];
 
   void switchScreen() {
     setState(() {
-      activeScreen =  QuestionsScreen(onSelectAnswer: chooseAnswer);
+      activeScreen = QuestionsScreen(onSelectAnswer: chooseAnswer);
     });
   }
 
