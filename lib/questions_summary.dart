@@ -55,22 +55,24 @@ class QuestionsSummary extends StatelessWidget {
               // A Row can contain a Column. This nested layout keeps the
               // question number on the left while stacking the related text
               // vertically on the right.
-              Column(
-                children: [
-                  // Each value in `data` has the general type Object because
-                  // `summaryData` is a List<Map<String, Object>>. Text requires
-                  // a String, so `as String` tells Dart the specific type stored
-                  // under each of these keys.
-                  Text(data['question'] as String),
-                  // SizedBox inserts five logical pixels of vertical space
-                  // between the question and its answers.
-                  const SizedBox(height: 5),
-                  // The answer selected by the user is displayed first.
-                  Text(data['user_answer'] as String),
-                  // The correct answer is displayed below the user's answer so
-                  // the two values can be compared.
-                  Text(data['correct_answer'] as String),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    // Each value in `data` has the general type Object because
+                    // `summaryData` is a List<Map<String, Object>>. Text requires
+                    // a String, so `as String` tells Dart the specific type stored
+                    // under each of these keys.
+                    Text(data['question'] as String),
+                    // SizedBox inserts five logical pixels of vertical space
+                    // between the question and its answers.
+                    const SizedBox(height: 5),
+                    // The answer selected by the user is displayed first.
+                    Text(data['user_answer'] as String),
+                    // The correct answer is displayed below the user's answer so
+                    // the two values can be compared.
+                    Text(data['correct_answer'] as String),
+                  ],
+                ),
               ),
             ],
           );
