@@ -47,8 +47,15 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Generate the detailed results once so the same data can be used for both
+    // the score calculation and the question-by-question summary.
     final summaryData = getSummaryData();
+
+    // The full question list determines how many questions were in the quiz.
     final numTotalQuestions = questions.length;
+
+    // Keep only the entries where the selected and correct answers match, then
+    // use the number of matching entries as the user's score.
     final numCorrectQuestions = summaryData.where((data) {
       return data['user_answer'] == data['correct_answer'];
     }).length;
@@ -68,7 +75,8 @@ class ResultsScreen extends StatelessWidget {
           // Center the group along the Column's vertical main axis.
           mainAxisAlignment: .center,
           children: [
-            // This placeholder heading will later show the calculated score.
+            // Interpolation inserts the calculated score and total into the
+            // message displayed to the user.
             Text(
               "You answered $numCorrectQuestions out of $numTotalQuestions q uestions correctly!",
             ),
