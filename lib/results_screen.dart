@@ -47,6 +47,12 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectQuestions = summaryData.where((data) {
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
+
     // SizedBox gives its child all available horizontal space. The shorthand
     // `.infinity` is inferred as double.infinity from the width parameter.
     return SizedBox(
@@ -63,7 +69,9 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: .center,
           children: [
             // This placeholder heading will later show the calculated score.
-            const Text("You answered X out of Y questions correctly!"),
+            Text(
+              "You answered $numCorrectQuestions out of $numTotalQuestions q uestions correctly!",
+            ),
 
             // Add 30 logical pixels of vertical space before the summary.
             const SizedBox(height: 30),
@@ -74,7 +82,7 @@ class ResultsScreen extends StatelessWidget {
             // QuestionsSummary constructor. Without parentheses, this would
             // pass the function itself, but QuestionsSummary expects the list
             // produced by that function.
-            QuestionsSummary(getSummaryData()),
+            QuestionsSummary(summaryData),
 
             // Separate the summary list from the restart button.
             const SizedBox(height: 30),
